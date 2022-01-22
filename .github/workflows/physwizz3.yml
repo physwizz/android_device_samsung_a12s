@@ -19,7 +19,7 @@ env:
   MANIFEST: git://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git -b twrp-11
   DEVICE: a12s
   DT_LINK: https://github.com/physwizz/android_device_samsung_a12s.git -b main
-  DT_PATH: a12s-twrp/device/samsung/a12s
+  DT_PATH: device/samsung/a12s
   CHAT_ID: ${{ secrets.TEST_CHAT_ID }}
   BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
   TARGET: recoveryimage
