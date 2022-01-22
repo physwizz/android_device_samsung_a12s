@@ -1,4 +1,4 @@
-name: Building TWRP a12s v2
+name: Building TWRP Android 11 for a12s
 
 on:
 #  release:
@@ -18,10 +18,8 @@ on:
 env:
   MANIFEST: git://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git -b twrp-11
   DEVICE: a12s
-  DT_LINK: https://github.com/physwizz/android_device_samsung_a12s.git -b main
+  DT_LINK: https://github.com/physwizz/android_device_samsung_a12s
   DT_PATH: device/samsung/a12s
-  CHAT_ID: ${{ secrets.TEST_CHAT_ID }}
-  BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
   TARGET: recoveryimage
   TZ: Asia/Kolkata
 
@@ -65,10 +63,7 @@ jobs:
        - name: Uploading recovery image
          run: |
               cd work/out/target/product/$DEVICE
-              sudo zip -r9 TWRP-a12s-a11.zip recovery.img
-              ls > ls.txt
-              curl -F chat_id=$CHAT_ID -F document=@ls.txt -F parse_mode=markdown https://api.telegram.org/bot$BOT_TOKEN/sendDocument -F caption="Check it out @physwizz"
-              curl -F chat_id=$CHAT_ID -F document=@TWRP-a12s-a11.zip https://api.telegram.org/bot$BOT_TOKEN/sendDocument -F caption="Please test it @physwizz"
+              sudo zip -r9 TWRP-a12s.zip . -i recovery.img
               curl -sL https://git.io/file-transfer | sh
-              ./transfer wet TWRP-a12s-a11.zip
+              ./transfer wet TWRP-a12s.zip
               ./transfer wet recovery.img
